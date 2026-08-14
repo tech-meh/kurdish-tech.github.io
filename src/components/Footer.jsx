@@ -51,6 +51,36 @@ export default function Footer({ navigate }) {
                   GitHub
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://huggingface.co/kurdish-tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink/80 transition-colors hover:text-roj-deep dark:text-paper/80 dark:hover:text-roj"
+                >
+                  Hugging Face
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/kurdishtech_org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink/80 transition-colors hover:text-roj-deep dark:text-paper/80 dark:hover:text-roj"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/KurdishTechOrg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink/80 transition-colors hover:text-roj-deep dark:text-paper/80 dark:hover:text-roj"
+                >
+                  Telegram
+                </a>
+              </li>
             </ul>
           </div>
 
