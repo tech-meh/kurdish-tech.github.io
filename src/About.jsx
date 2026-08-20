@@ -4,6 +4,7 @@ import LinkButton from './components/LinkButton';
 import BackHomeButton from './components/BackHomeButton';
 
 const GITHUB_ORG_URL = 'https://github.com/Kurdish-Tech';
+const HUGGINGFACE_ORG_URL = 'https://huggingface.co/kurdish-tech';
 
 function Section({ title, children }) {
   return (
@@ -71,9 +72,12 @@ export default function About({ navigate }) {
             zimanê Kurdî, bernamesaziyê, an jî parastina çandê eleqedar î, em
             bi germî vedixwînin ku tu li ser GitHub tevlî me bibe.
           </p>
-          <div className="pt-2">
+          <div className="flex flex-wrap gap-3 pt-2">
             <LinkButton href={GITHUB_ORG_URL} icon="code" variant="primary">
               Rêxistina Me li GitHub
+            </LinkButton>
+            <LinkButton href={HUGGINGFACE_ORG_URL} icon="code" variant="secondary">
+              Daneheva Me li Hugging Face
             </LinkButton>
           </div>
         </Section>
