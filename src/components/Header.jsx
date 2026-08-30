@@ -13,6 +13,7 @@ const isMacOverlay = isTauri && isMac;
 
 const GITHUB_ORG_URL = 'https://github.com/Kurdish-Tech';
 const KEYBOARD_URL = 'https://kurdish-tech.github.io/kurdish-kurmanci-keyboard-layout/';
+const KURDLE_URL = 'https://kurdish-tech.github.io/kurdle/';
 
 function MenuIcon(props) {
   return (
@@ -80,6 +81,9 @@ export default function Header({ theme, onThemeChange, route, navigate }) {
           <a href={KEYBOARD_URL} target="_blank" rel="noopener noreferrer" className={navLinkClass(false)}>
             Klavyeya Kurdî
           </a>
+          <a href={KURDLE_URL} target="_blank" rel="noopener noreferrer" className={navLinkClass(false)}>
+            Kurdle
+          </a>
           {!isTauri && (
             <button onClick={goToDownload} className={navLinkClass(route === '/download')}>
               Daxistina Sepanê
@@ -125,6 +129,14 @@ export default function Header({ theme, onThemeChange, route, navigate }) {
               className={`rounded-xl px-3 py-2 ${navLinkClass(false)}`}
             >
               Klavyeya Kurdî
+            </a>
+            <a
+              href={KURDLE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`rounded-xl px-3 py-2 ${navLinkClass(false)}`}
+            >
+              Kurdle
             </a>
             {!isTauri && (
               <button
