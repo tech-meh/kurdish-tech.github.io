@@ -1,46 +1,93 @@
-<!doctype html>
-<html lang="ku">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Ferheng — Kurdish Dictionary (Kurmancî, Soranî, Zazakî)</title>
-    <meta
-      name="description"
-      content="A free, offline-friendly Kurmancî, Soranî, and Zazakî Kurdish dictionary. 456,000+ words sourced from Wîkîferheng, the Kurdish Wiktionary."
-    />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Ferheng" />
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KurdTell</title>
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; margin: 0; padding: 0; }
+    body { background: #0b1120; color: #fff; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 20px; width: 100%; max-width: 360px; text-align: center; }
+    h1 { color: #10b981; font-size: 1.5rem; margin-bottom: 15px; }
+    input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; margin-bottom: 12px; font-size: 1rem; text-align: center; }
+    .btn { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #10b981; color: #000; font-weight: bold; cursor: pointer; font-size: 1rem; }
+    #dialer { display: none; }
+    .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; }
+    .key { background: #0f172a; border: 1px solid #334155; color: #fff; padding: 14px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; }
+    .key:active { background: #10b981; color: #000; }
+  </style>
+</head>
+<body>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Ferheng" />
-    <meta property="og:title" content="Ferheng — Kurdish Dictionary (Kurmancî, Soranî, Zazakî)" />
-    <meta
-      property="og:description"
-      content="A free, offline-friendly Kurmancî, Soranî, and Zazakî Kurdish dictionary. 456,000+ words sourced from Wîkîferheng, the Kurdish Wiktionary."
-    />
-    <meta property="og:url" content="https://kurdish-tech.github.io/" />
-    <meta property="og:image" content="https://kurdish-tech.github.io/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ferheng — Kurdish Dictionary (Kurmancî, Soranî, Zazakî)" />
-    <meta
-      name="twitter:description"
-      content="A free, offline-friendly Kurmancî, Soranî, and Zazakî Kurdish dictionary. 456,000+ words."
-    />
-    <meta name="twitter:image" content="https://kurdish-tech.github.io/og-image.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="font-body">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<div class="card" id="loginCard">
+  <h1>KurdTell ⚡</h1>
+  <input type="tel" id="uPhone" placeholder="ژمارەی هێڵ (٦ ژمارە)">
+  <input type="password" id="uPass" placeholder="وشەی نهێنی">
+  <button onclick="login()" class="btn" id="lBtn">چوونەژوورەوە</button>
+  <p id="msg" style="color: #ef4444; margin-top: 10px; font-size: 0.85rem;"></p>
+</div>
+
+<div class="card" id="dialer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+    <span id="welcName" style="color: #10b981; font-weight: bold;">--</span>
+    <button onclick="logout()" style="background: none; border: none; color: #ef4444; cursor: pointer;">دەرچوون</button>
+  </div>
+  <input type="text" id="targetNum" placeholder="ژمارەی پەیوەندی" readonly>
+  <div class="keypad">
+    <button class="key" onclick="press('1')">1</button>
+    <button class="key" onclick="press('2')">2</button>
+    <button class="key" onclick="press('3')">3</button>
+    <button class="key" onclick="press('4')">4</button>
+    <button class="key" onclick="press('5')">5</button>
+    <button class="key" onclick="press('6')">6</button>
+    <button class="key" onclick="press('7')">7</button>
+    <button class="key" onclick="press('8')">8</button>
+    <button class="key" onclick="press('9')">9</button>
+    <button class="key" onclick="press('*')">*</button>
+    <button class="key" onclick="press('0')">0</button>
+    <button class="key" onclick="press('#')">#</button>
+  </div>
+  <button class="btn" onclick="alert('پەیوەندی بەسترا لەگەڵ: ' + document.getElementById('targetNum').value)">پەیوەندی 📞</button>
+</div>
+
+<script>
+  const DB = "https://voice-system-c7785-default-rtdb.firebaseio.com/users";
+
+  async function login() {
+    const p = document.getElementById("uPhone").value.trim();
+    const pass = document.getElementById("uPass").value.trim();
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("lBtn");
+
+    if (!p || !pass) {
+      msg.innerText = "تکایە هەردوو خانەکە پڕبکەرەوە!";
+      return;
+    }
+
+    btn.innerText = "چاوەڕێبە...";
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(`${DB}/${p}.json`);
+      const user = await res.json();
+
+      if (user && (user.password === pass || user.pass === pass)) {
+        document.getElementById("loginCard").style.display = "none";
+        document.getElementById("dialer").style.display = "block";
+        document.getElementById("welcName").innerText = user.name || user.fullName || p;
+      } else {
+        msg.innerText = "ژمارە یان نهێنوشە هەڵەیە!";
+      }
+    } catch (e) {
+      msg.innerText = "کێشەی سێرڤەر: " + e.message;
+    } finally {
+      btn.innerText = "چوونەژوورەوە";
+      btn.disabled = false;
+    }
+  }
+
+  function logout() { location.reload(); }
+  function press(n) { document.getElementById("targetNum").value += n; }
+</script>
+</body>
 </html>
